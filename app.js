@@ -8,6 +8,9 @@ const cors = require('cors');
 const SECRET_KEY = process.env.SECRET_KEY;
 console.log("SECRET_KEY loaded:", SECRET_KEY);
 app.use(cors());
+app.get('/', (req, res) => {
+    res.json({ message: 'Gym Management API is running' });
+});
 
 const pool = new Pool({
     user: process.env.DB_USER,
