@@ -43,7 +43,7 @@ function ClubOverview({ managerToken }) {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/manager/dashboard', {
+        const res = await fetch('https://optimus-prime-gym.onrender.com', {
           headers: { 'Authorization': `Bearer ${managerToken}` }
         });
         if (!res.ok) throw new Error('Failed');
