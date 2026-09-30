@@ -15,7 +15,7 @@ function ManagerLogin({ onLoginSuccess, onBackToMember }) {
     setError('');
 
     try {
-      const response = await fetch('https://optimus-prime-gym.onrender.com', {
+      const response = await fetch('https://optimus-prime-gym.onrender.com/api/auth/login-manager', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
