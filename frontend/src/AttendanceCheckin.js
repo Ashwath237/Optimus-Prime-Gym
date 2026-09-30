@@ -5,7 +5,7 @@ function AttendanceCheckin() {
     
     useEffect(() => {
         const token = localStorage.getItem('token');
-        fetch('http://localhost:3001/api/bookings', {
+        fetch('https://optimus-prime-gym.onrender.com', {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(res => res.json())
@@ -18,7 +18,7 @@ function AttendanceCheckin() {
     
     const handleCheckin = (bookingId) => {
         const token = localStorage.getItem('token');
-        fetch(`http://localhost:3001/api/attendance`, {
+        fetch(`https://optimus-prime-gym.onrender.com`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ function Dashboard() {
         }
         
         console.log('Token found, fetching member data...');
-        fetch('http://localhost:3001/api/members', {
+        fetch('https://optimus-prime-gym.onrender.com', {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         

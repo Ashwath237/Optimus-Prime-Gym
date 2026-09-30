@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'https://optimus-prime-gym.onrender.com/api';
+
 
 // Rich mock data for demo mode or when backend / PostgreSQL isn't seeded/running
 const initialMockClasses = [

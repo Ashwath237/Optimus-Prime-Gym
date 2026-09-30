@@ -5,7 +5,7 @@ function MemberBookings() {
     
     useEffect(() => {
         const token = localStorage.getItem('token');
-        fetch('http://localhost:3001/api/bookings', {
+        fetch('https://optimus-prime-gym.onrender.com', {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(res => res.json())
@@ -18,7 +18,7 @@ function MemberBookings() {
     
     const handleCancelBooking = (bookingId) => {
     const token = localStorage.getItem('token');
-    fetch(`http://localhost:3001/api/bookings/${bookingId}`, {
+    fetch(`https://optimus-prime-gym.onrender.com/${bookingId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
     })

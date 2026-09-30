@@ -9,7 +9,7 @@ function TrainersPage(){
 useEffect(() => {
     const token = localStorage.getItem('token');
     setLoading(true);
-    fetch('http://localhost:3001/api/trainers',{
+    fetch('https://optimus-prime-gym.onrender.com',{
         headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())

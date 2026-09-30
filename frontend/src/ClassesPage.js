@@ -8,7 +8,7 @@ function ClassesPage(){
     const handleBookClass = (classId) => {
         const token = localStorage.getItem('token');
         setLoading(true);
-        fetch('http://localhost:3001/api/bookings', {
+        fetch('https://optimus-prime-gym.onrender.com', {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ function ClassesPage(){
 
 useEffect(() => {
     const token = localStorage.getItem('token');
-    fetch('http://localhost:3001/api/classes',{
+    fetch('https://optimus-prime-gym.onrender.com',{
         headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
