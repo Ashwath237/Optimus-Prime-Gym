@@ -12,21 +12,14 @@ app.get('/', (req, res) => {
     res.json({ message: 'Gym Management API is running' });
 });
 
-const DB_HOST = process.env.DB_HOST || 'ep-dawn-flower-b54eopa6-pooler.c-7.us-east-2.aws.neon.tech';
-const DB_USER = process.env.DB_USER || 'neondb_owner';
-const DB_PASSWORD = process.env.DB_PASSWORD || 'npg_wsOIru8baG3Q';
-const DB_NAME = process.env.DB_NAME || 'neondb';
-const DB_PORT = process.env.DB_PORT || 5432;
+const connectionString = process.env.DATABASE_URL || 
+  `postgres://${process.env.DB_USER || 'neondb_owner'}:${encodeURIComponent(process.env.DB_PASSWORD || 'npg_wsOIru8baG3Q')}@${process.env.DB_HOST || 'ep-dawn-flower-b54eopa6-pooler.c-7.us-east-2.aws.neon.tech'}:${process.env.DB_PORT || 5432}/${process.env.DB_NAME || 'neondb'}`;
+
+const isLocal = process.env.DB_HOST === 'localhost' || process.env.DB_HOST === '127.0.0.1';
 
 const pool = new Pool({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
-  port: DB_PORT,
-  ssl: DB_HOST !== 'localhost' && DB_HOST !== '127.0.0.1'
-    ? { rejectUnauthorized: false }
-    : false
+  connectionString,
+  ssl: isLocal ? false : { rejectUnauthorized: false }
 });
 app.use(express.json());
 
