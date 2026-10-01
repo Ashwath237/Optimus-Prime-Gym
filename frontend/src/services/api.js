@@ -1,4 +1,7 @@
-const API_BASE_URL = 'https://optimus-prime-gym.onrender.com/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:3001/api' 
+    : 'https://optimus-prime-gym.onrender.com/api');
 
 
 // Rich mock data for demo mode or when backend / PostgreSQL isn't seeded/running
@@ -58,7 +61,7 @@ async function request(endpoint, options = {}, mockFallbackFn) {
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout for swift response
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout for Render cold-starts
 
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
