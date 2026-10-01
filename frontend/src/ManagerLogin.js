@@ -32,6 +32,7 @@ function ManagerLogin({ onLoginSuccess, onBackToMember }) {
 
       sound.playSuccess();
       localStorage.setItem('managerToken', data.token);
+      localStorage.setItem('token', data.token);
       localStorage.setItem('managerId', data.managerId);
 
       if (onLoginSuccess) {
