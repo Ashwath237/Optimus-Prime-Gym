@@ -5,24 +5,30 @@ const app = express();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY || 'Ash_Gym_Management_2026_VIT_MCA_Backend_Secret_Key_Production';
 console.log("SECRET_KEY loaded:", SECRET_KEY);
 app.use(cors());
 app.get('/', (req, res) => {
     res.json({ message: 'Gym Management API is running' });
 });
 
+const DB_HOST = process.env.DB_HOST || 'ep-dawn-flower-b54eopa6-pooler.c-7.us-east-2.aws.neon.tech';
+const DB_USER = process.env.DB_USER || 'neondb_owner';
+const DB_PASSWORD = process.env.DB_PASSWORD || 'npg_wsOIru8baG3Q';
+const DB_NAME = process.env.DB_NAME || 'neondb';
+const DB_PORT = process.env.DB_PORT || 5432;
+
 const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-  ssl: process.env.DB_HOST && process.env.DB_HOST !== 'localhost' && process.env.DB_HOST !== '127.0.0.1'
+  host: DB_HOST,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_NAME,
+  port: DB_PORT,
+  ssl: DB_HOST !== 'localhost' && DB_HOST !== '127.0.0.1'
     ? { rejectUnauthorized: false }
     : false
 });
-    app.use(express.json());
+app.use(express.json());
 
 
     app.use((req, res, next) => {
@@ -643,11 +649,11 @@ app.post('/api/auth/login-manager', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: manager.id, role: 'manager' }, process.env.SECRET_KEY);
+        const token = jwt.sign({ id: manager.id, role: 'manager' }, SECRET_KEY);
         res.json({ token, managerId: manager.id });
     } catch (err) {
         console.log('Manager login error:', err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error: ' + (err.message || 'Unknown error') });
     }
 });
 
