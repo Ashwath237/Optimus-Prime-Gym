@@ -671,7 +671,9 @@ app.get('/api/manager/dashboard', JwtVerify, async (req, res) => {
 
     app.use(errorMiddleware);
 
-    if (process.env.NODE_ENV !== 'production') {
-        app.listen(3001, () => console.log("Server running on port 3001"));
-    }
-    module.exports = app;
+const PORT = process.env.PORT || 3001;
+if (require.main === module || process.env.RENDER) {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
