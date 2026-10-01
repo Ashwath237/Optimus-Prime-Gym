@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { sound } from './utils/soundFx';
 import { ShieldIcon, DumbbellIcon } from './utils/icons';
+import { API_BASE_URL } from './services/api';
 
 function ManagerLogin({ onLoginSuccess, onBackToMember }) {
   const [username, setUsername] = useState('');
@@ -15,7 +16,7 @@ function ManagerLogin({ onLoginSuccess, onBackToMember }) {
     setError('');
 
     try {
-      const response = await fetch('https://optimus-prime-gym.onrender.com/api/auth/login-manager', {
+      const response = await fetch(`${API_BASE_URL}/auth/login-manager`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })

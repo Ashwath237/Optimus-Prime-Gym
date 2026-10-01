@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from './services/api';
 import ClassesPage from './components/ClassesPage';
 import TrainersPage from './components/TrainersPage';
 import MembersPage from './components/MembersPage';
@@ -43,7 +44,7 @@ function ClubOverview({ managerToken }) {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('https://optimus-prime-gym.onrender.com', {
+        const res = await fetch(`${API_BASE_URL}/manager/dashboard`, {
           headers: { 'Authorization': `Bearer ${managerToken}` }
         });
         if (!res.ok) throw new Error('Failed');
