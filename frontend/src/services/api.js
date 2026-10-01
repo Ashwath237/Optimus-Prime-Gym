@@ -22,7 +22,7 @@ const initialMockTrainers = [
 ];
 
 const initialMockMembers = [
-  { id: 1, username: 'ashwath', email: 'ash@apex.gym', age: 24, fitness_level: 'Beast', registration_date: '2026-01-15', streak_days: 18, total_workouts: 84 },
+  { id: 1, username: 'athlete_01', email: 'athlete01@apex.gym', age: 24, fitness_level: 'Beast', registration_date: '2026-01-15', streak_days: 18, total_workouts: 84 },
   { id: 2, username: 'sara_connor', email: 'sara@apex.gym', age: 29, fitness_level: 'Advanced', registration_date: '2026-02-01', streak_days: 12, total_workouts: 52 },
   { id: 3, username: 'neo_anderson', email: 'neo@apex.gym', age: 31, fitness_level: 'Beast', registration_date: '2026-02-14', streak_days: 25, total_workouts: 110 },
   { id: 4, username: 'maya_fit', email: 'maya@apex.gym', age: 22, fitness_level: 'Intermediate', registration_date: '2026-03-01', streak_days: 7, total_workouts: 31 },
@@ -35,7 +35,7 @@ const initialMockBookings = [
 ];
 
 const initialMockAttendance = [
-  { id: 1, member_id: 1, member_name: 'Ashwath', class_id: 1, class_name: 'Cyber HIIT Inferno', attended_date: '2026-09-19', check_in_time: '06:24 AM', status: 'Verified' },
+  { id: 1, member_id: 1, member_name: 'Member #8842', class_id: 1, class_name: 'Cyber HIIT Inferno', attended_date: '2026-09-19', check_in_time: '06:24 AM', status: 'Verified' },
   { id: 2, member_id: 3, member_name: 'Neo Anderson', class_id: 4, class_name: 'Apex Combat & Strike', attended_date: '2026-09-19', check_in_time: '05:15 PM', status: 'Verified' },
   { id: 3, member_id: 2, member_name: 'Sara Connor', class_id: 2, class_name: 'Iron Titan Hypertrophy', attended_date: '2026-09-18', check_in_time: '07:55 AM', status: 'Verified' }
 ];

@@ -34,6 +34,7 @@ function Register({ onNavigateLogin }) {
       const { data } = await api.register(username, email, password, Number(age), fitnessLevel);
       if (data.message === 'User registered successfully') {
         sound.playSuccess();
+        localStorage.setItem('username', username);
         setSuccess('Account created successfully! Redirecting to sign in...');
         setTimeout(() => {
           if (onNavigateLogin) onNavigateLogin();
@@ -80,7 +81,7 @@ function Register({ onNavigateLogin }) {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-1">
                   Username
@@ -89,7 +90,7 @@ function Register({ onNavigateLogin }) {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="e.g. ashwath"
+                  placeholder="e.g. athlete_01"
                   className="clean-input w-full"
                   required
                 />

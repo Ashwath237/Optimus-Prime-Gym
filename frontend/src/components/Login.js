@@ -16,9 +16,10 @@ function Login({ onLoginSuccess, onNavigateRegister, onNavigateManager }) {
     setLoading(true);
 
     try {
-      const { data, isLive } = await api.login(username || 'ashwath', password || 'password123');
+      const { data, isLive } = await api.login(username || 'athlete_01', password || 'password123');
       if (data.token) {
         sound.playSuccess();
+        localStorage.setItem('username', username || 'athlete_01');
         if (onLoginSuccess) {
           onLoginSuccess(data.token, isLive);
         }
@@ -33,7 +34,7 @@ function Login({ onLoginSuccess, onNavigateRegister, onNavigateManager }) {
   };
 
   const handleQuickDemo = () => {
-    setUsername('ashwath');
+    setUsername('athlete_01');
     setPassword('password123');
     sound.playClick();
     setTimeout(() => handleSubmit(), 150);
@@ -98,7 +99,7 @@ function Login({ onLoginSuccess, onNavigateRegister, onNavigateManager }) {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g. ashwath"
+                placeholder="e.g. athlete_01"
                 className="clean-input w-full"
                 required
               />

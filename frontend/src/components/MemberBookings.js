@@ -65,7 +65,9 @@ function MemberBookings({ onNavigateClasses, onShowToast }) {
             <span className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider block font-mono">
               Active Member Pass
             </span>
-            <h2 className="text-xl font-bold text-white mt-0.5">Ashwath</h2>
+            <h2 className="text-xl font-bold text-white mt-0.5">
+              {localStorage.getItem('username') || `Member #${localStorage.getItem('userId') || '8842'}`}
+            </h2>
           </div>
           <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-950/40 text-emerald-400 border border-emerald-800/60 font-mono">
             Active
