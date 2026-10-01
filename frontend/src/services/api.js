@@ -1,7 +1,7 @@
 export const API_BASE_URL = process.env.REACT_APP_API_URL || 
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? 'http://localhost:3001/api' 
-    : '/api');
+    : 'https://optimus-prime-gym.onrender.com/api');
 
 
 // Rich mock data for demo mode or when backend / PostgreSQL isn't seeded/running
