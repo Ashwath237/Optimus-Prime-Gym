@@ -203,22 +203,22 @@ app.use(express.json());
         })
     });
 
-//Create New classes
     app.post("/api/classes", JwtVerify, (req, res, next)=>{
-    const query = `INSERT INTO classes ( name, trainer_id, time, capacity, difficulty_level ) VALUES ($1, $2, $3, $4, $5)`;
-    const { name, trainer_id, time, capacity, difficulty_level } = req.body;
+        const query = `INSERT INTO classes ( name, trainer_id, time, capacity, difficulty_level ) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+        const { name, trainer_id, time, capacity, difficulty_level } = req.body;
         
         pool.query(query, [ name ,trainer_id, time, capacity, difficulty_level], (err, result) => {
             if (err){
-                const error = new Error('Failed to create new Class');
-                error.status = 402;
+                console.log('Create class DB Error:', err.message);
+                const error = new Error('Failed to create new class: ' + err.message);
+                error.status = 400;
                 return next (error);
             }
             else {
-                res.status(200).json({message: 'Class created successfully'});
+                res.status(200).json({message: 'Class created successfully', class: result.rows[0]});
             }
+        });
     });
-});
 
 //Delete Class
     app.delete('/api/classes/:id', JwtVerify, (req, res, next) => {
@@ -497,20 +497,21 @@ app.use(express.json());
 
 //Create New Trainers
     app.post("/api/trainers", JwtVerify, (req, res, next)=>{
-        const query = `INSERT INTO trainers ( name, specialization, availability ) VALUES ($1, $2, $3)`;
+        const query = `INSERT INTO trainers ( name, specialization, availability ) VALUES ($1, $2, $3) RETURNING *`;
         const { name, specialization, availability } = req.body;
         
         pool.query(query, [ name, specialization, availability], (err, result) => {
             if (err){
-                const error = new Error('Failed to create new trainers');
-                error.status = 402;
+                console.log('Create trainer DB Error:', err.message);
+                const error = new Error('Failed to create new trainer: ' + err.message);
+                error.status = 400;
                 return next (error);
             }
             else {
-                res.status(200).json({message: 'trainers created successfully'});
+                res.status(200).json({message: 'Trainer created successfully', trainer: result.rows[0]});
             }
+        });
     });
-});
 
 //Update Trainer
     app.put('/api/trainers/:id', JwtVerify, (req, res, next) => {
